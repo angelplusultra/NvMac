@@ -1,10 +1,5 @@
 let ob = {
+  yuh: "yuh",
+};
 
-
-
-
-
-
-
-  yuh: 'yuh'
-}
+let fuck = "yuh                       ";

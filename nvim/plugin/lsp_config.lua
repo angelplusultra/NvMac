@@ -1,4 +1,6 @@
 require("mason").setup()
+require("neodev").setup()
+
 require("mason-lspconfig").setup({
   ensure_installed = { "lua_ls", "html", "tsserver", "cssls" }
 })
@@ -24,7 +26,11 @@ local on_attach_tsserver = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = vim.api.nvim_create_augroup("Format", { clear = true }),
       buffer = bufnr,
-      callback = function() vim.lsp.buf.format() end
+      callback = function() 
+        vim.lsp.buf.format()
+        vim.cmd("Prettier")
+      end
+
     })
   end
 end
@@ -35,6 +41,20 @@ for _, val in pairs(servers) do
       on_attach = on_attach_tsserver,
       capabilities = capabilities
     }
+    elseif val == 'lua_ls'  then
+    require('lspconfig')[val].setup {
+      -- on_attach = on_attach,
+       settings = {
+    Lua = {
+      completion = {
+        callSnippet = "Replace"
+      }
+    }
+  },
+
+      capabilities = capabilities
+    }
+
   else
     require('lspconfig')[val].setup {
       -- on_attach = on_attach,
