@@ -8,12 +8,20 @@ require("toggleterm").setup {
     elseif term.direction == "vertical" then
       return vim.o.columns * 0.4
     end
-  end
+  end,
+  float_opts = {
+
+  border = 'curved',
+  width=80,
+  height = 20
+
+  }
+
 
 }
 
 map("n", "<leader>v", ":ToggleTerm direction=vertical<CR>a")
-map("n", "<leader>f", ":ToggleTerm direction=float<CR>a")
+map("n", "<leader>h", ":ToggleTerm direction=float<CR>a")
 -- map("t", "<C-q>", [[<C-\><C-n>]], ":q!<CR>")
 vim.keymap.set('t', '<leader>v', "<C-\\><C-n>:ToggleTerm direction=vertical<CR>", opts)
-vim.keymap.set('t', '<leader>f', "<C-\\><C-n>:ToggleTerm direction=float<CR>", opts)
+vim.keymap.set('t', '<leader>h', "<C-\\><C-n>:ToggleTerm direction=float<CR>", opts)

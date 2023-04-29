@@ -12,6 +12,9 @@ function map(mode, keybind, cmd, opts)
 end
 
 M.map = map
-
+M.sup = function ()
+  print("Sup nigga")
+  
+end
 
 return M
