@@ -19,7 +19,7 @@ require("mason-lspconfig").setup({
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local servers = { 'lua_ls', 'tsserver', 'html', "cssls", "tailwindcss" }
+local servers = { 'lua_ls', 'tsserver', 'html', "cssls", "tailwindcss", "pyright" }
 
 local on_attach_tsserver = function(client, bufnr)
   if client.server_capabilities.documentFormattingProvider then
@@ -27,8 +27,8 @@ local on_attach_tsserver = function(client, bufnr)
       group = vim.api.nvim_create_augroup("Format", { clear = true }),
       buffer = bufnr,
       callback = function() 
+        vim.cmd(":Prettier")
         vim.lsp.buf.format()
-        vim.cmd("Prettier")
       end
 
     })
